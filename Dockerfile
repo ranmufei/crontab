@@ -1,5 +1,5 @@
 #FROM alpine:3.3
-FROM hub.03in.com:5002/ranmufei/centos:7
+FROM centos:7
 MAINTAINER <ranmufei@qq.com>, Linksame Team
 
 ENV TZ=Asia/Shanghai
