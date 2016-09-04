@@ -1,0 +1,16 @@
+# do daily/weekly/monthly maintenance
+# min   hour    day     month   weekday command
+*/15    *       *       *       *       run-parts /etc/periodic/15min
+0       *       *       *       *       run-parts /etc/periodic/hourly
+0       2       *       *       *       run-parts /etc/periodic/daily
+0       3       *       *       6       run-parts /etc/periodic/weekly
+0       5       1       *       *       run-parts /etc/periodic/monthly
+*     *       *       *       *       /script.sh
+0     0       *       *       *       /backupscript.sh 1
+*/1       *       *       *       *       php /home/www/maindata/initOauth/pcdInit.php
+*/1       *       *       *       *       php /home/www/maindata/initOauth/crontab.php
+*/1       *       *       *       *       sh /home/www/maindata/App/Ups/Cronbash/upsCronBash
+#0 0 * * *  rm -rvf /var/spool/mail/root
+0       0       *       *       *       sh /home/www/maindata/initOauth/backup.sh
+#10       *       *       *       *       ntpdate us.pool.ntp.org
+

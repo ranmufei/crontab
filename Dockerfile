@@ -9,7 +9,7 @@ ENV TZ=Asia/Shanghai
 RUN echo "Asia/shanghai" > /etc/timezone
 #RUN yum -y update; yum clean all
 
-RUN yum -y cronie curl  php php-curl  php-json; yum clean all
+RUN yum -y cronie ntpdate curl  php php-curl  php-json; yum clean all
 
 
 

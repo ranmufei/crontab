@@ -1,16 +1,22 @@
-# do daily/weekly/monthly maintenance
-# min   hour    day     month   weekday command
-*/15    *       *       *       *       run-parts /etc/periodic/15min
-0       *       *       *       *       run-parts /etc/periodic/hourly
-0       2       *       *       *       run-parts /etc/periodic/daily
-0       3       *       *       6       run-parts /etc/periodic/weekly
-0       5       1       *       *       run-parts /etc/periodic/monthly
-*     *       *       *       *       /script.sh
-0     0       *       *       *       /backupscript.sh 1
-*/1       *       *       *       *       php /home/www/maindata/initOauth/pcdInit.php
-*/1       *       *       *       *       php /home/www/maindata/initOauth/crontab.php
-*/1       *       *       *       *       sh /home/www/maindata/App/Ups/Cronbash/upsCronBash
-#0 0 * * *  rm -rvf /var/spool/mail/root
-0       0       *       *       *       sh /home/www/maindata/initOauth/backup.sh
-#10       *       *       *       *       ntpdate us.pool.ntp.org
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
 
+# For details see man 4 crontabs
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name  command to be executed
+*  *  *  *  *  root /script.sh
+0  0  *  *  *  root /backupscript.sh 1
+*/1  *  *  *  *  root php /home/www/maindata/initOauth/pcdInit.php
+*/1  *  *  *  * root php /home/www/maindata/initOauth/crontab.php
+*/1  *  *  *  *  root sh /home/www/maindata/App/Ups/Cronbash/upsCronBash
+#0 0 * * *  rm -rvf /var/spool/mail/root
+0  0  *  *  *  root sh /home/www/maindata/initOauth/backup.sh
+10  *  *  *  * root ntpdate us.pool.ntp.org
