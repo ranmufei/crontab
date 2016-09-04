@@ -7,9 +7,10 @@ ENV TZ=Asia/Shanghai
 
 #RUN echo "http://mirrors.ustc.edu.cn/alpine/v3.3/main/" > /etc/apk/repositories
 RUN echo "Asia/shanghai" > /etc/timezone
-RUN yum -y update; yum clean all
+#RUN yum -y update; yum clean all
 
-RUN yum -y curl  php php-curl  php-json; yum clean all
+RUN yum -y vixie-cron crontabs curl  php php-curl  php-json; yum clean all
+
 
 
 ADD ./file/start.sh /start.sh
